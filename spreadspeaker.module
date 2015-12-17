@@ -1,0 +1,45 @@
+<?php
+
+function spreadspeaker_library() {
+  // Library One.
+  $libraries['spreadspeaker'] = array(
+    'title' => 'SP Readspeaker',
+    'website' => 'http://media.readspeaker.com/scripts/enterprise/HTTPS/ReadSpeaker2.5.zip',
+    'version' => '2.5',
+    'js' => array(
+      drupal_get_path('module', 'spreadspeaker') . '/libraries/js/readspeaker/ReadSpeaker.js?pids=embhl' => array(),
+    ),
+  );
+  $libraries['spreadspeaker-skin'] = array(
+    'title' => 'SP Readspeaker Skin',
+    'version' => '2.5',
+    'js' => array(
+      drupal_get_path('module', 'spreadspeaker') . '/libraries/js/SPReadSpeakerSkin.js' => array(),
+    ),
+  );
+  return $libraries;
+}
+
+function spreadspeaker_preprocess_page(&$vars) {
+  global $base_url;
+  // Add readspeaker javascipt.
+  if ((!empty($vars['node']) && in_array($vars['node']->type, array(
+    'activiteit',
+    'column',
+    'geschiedenis',
+    'nieuws',
+    'opinie',
+    'persoon',
+    'page',
+    'publicatie',
+    'rapport',
+    'standpunt',
+    'onderwerp',
+  ))) || (in_array(current_path(), array(
+    'wij-sp',
+    'doe-mee',
+  )))) {
+    drupal_add_js($base_url . '/' . drupal_get_path('module', 'spreadspeaker') . '/libraries/js/readspeaker/ReadSpeaker.js?pids=embhl');
+    drupal_add_library('spreadspeaker', 'spreadspeaker-skin');
+  };
+}

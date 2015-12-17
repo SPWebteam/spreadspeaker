@@ -1,0 +1,5 @@
+name = SPreadspeaker 
+description = Module that adds readspeaker functionality.
+core = 7.x
+version = 1.0
+package = "SP Webteam"
