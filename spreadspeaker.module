@@ -22,24 +22,6 @@ function spreadspeaker_library() {
 
 function spreadspeaker_preprocess_page(&$vars) {
   global $base_url;
-  // Add readspeaker javascipt.
-  if ((!empty($vars['node']) && in_array($vars['node']->type, array(
-    'activiteit',
-    'column',
-    'geschiedenis',
-    'nieuws',
-    'opinie',
-    'persoon',
-    'page',
-    'publicatie',
-    'rapport',
-    'standpunt',
-    'onderwerp',
-  ))) || (in_array(current_path(), array(
-    'wij-sp',
-    'doe-mee',
-  )))) {
     drupal_add_js($base_url . '/' . drupal_get_path('module', 'spreadspeaker') . '/libraries/js/readspeaker/ReadSpeaker.js?pids=embhl', 'external');
     drupal_add_library('spreadspeaker', 'spreadspeaker-skin');
-  };
 }
